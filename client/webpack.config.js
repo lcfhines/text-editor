@@ -34,6 +34,12 @@ module.exports = () => {
         description: 'Text Editor: Progressive Web App',
         background_color: '#ffffff',
         crossorigin: 'use-credentials',
+        icons: [
+          {
+            src: path.resolve('favicon.ico'),
+            sizes: [96, 128, 192, 256, 384, 512],
+          }
+        ]
       }),
     ],
 
