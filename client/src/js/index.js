@@ -1,6 +1,7 @@
 import { Workbox } from 'workbox-window';
 import Editor from './editor';
-import './database';
+// need to get and post data 
+import { putDb, getDb } from './database';
 import '../css/style.css';
 
 const main = document.querySelector('#main');
