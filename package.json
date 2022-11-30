@@ -1,7 +1,10 @@
 {
   "name": "jate",
   "version": "1.0.0",
-  "description": "",
+  "description": "a text editor app",
+  "engines": {
+    "node": "16.x"
+  },
   "main": "server.js",
   "scripts": {
     "start:dev": "concurrently \"cd client && npm run dev\" \"cd server && npm run server\" ",
