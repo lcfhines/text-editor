@@ -1,5 +1,4 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
@@ -10,34 +9,42 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 module.exports = () => {
   return {
     mode: 'development',
+    // entry point for files
     entry: {
       main: './src/js/index.js',
       install: './src/js/install.js'
     },
+    // output for bundles
     output: {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
       publicPath: '',
     },
     plugins: [
+      // generates html file and injects bundles
       new HtmlWebpackPlugin({
         template: './index.html',
         title: 'Text Editor'
       }),
-      new MiniCssExtractPlugin(),
+      // injects custom service worker
       new InjectManifest({
         swSrc: './src-sw.js',
         swDest: 'service-worker.js',
       }),
+      // creates manifest.json file
       new WebpackPwaManifest({
         name: 'PWA Text Editor',
         short_name: 'TextEditor',
         description: 'Text Editor: Progressive Web App',
         background_color: '#ffffff',
         crossorigin: 'use-credentials',
+        start_url: './',
+        publicPath: './',
+        fingerprints: false, 
+        inject: true,
         icons: [
           {
-            src: path.resolve('favicon.ico'),
+            src: path.resolve('src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
           }
         ]
@@ -45,6 +52,7 @@ module.exports = () => {
     ],
 
     module: {
+      // loaders (css and babel)
       rules: [
         {
           test: /\.css$/i,

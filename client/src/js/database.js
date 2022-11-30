@@ -1,12 +1,15 @@
 import { openDB } from 'idb';
 
 const initdb = async () =>
+// create new database named 'jate', use version 1
   openDB('jate', 1, {
+    // add database schema if not alraedy initialized
     upgrade(db) {
       if (db.objectStoreNames.contains('jate')) {
         console.log('jate database already exists');
         return;
       }
+      // create new object store for the data, give id key
       db.createObjectStore('jate', { keyPath: 'id', autoIncrement: true });
       console.log('jate database created');
     },
@@ -14,34 +17,43 @@ const initdb = async () =>
 
 // TODO: Add logic to a method that accepts some content and adds it to the database
 export const putDb = async (content) =>  {
-  console.error('putDb not implemented');
-// connect to database and version
+  console.log(content);
+
+  // connect to database and version
   const jateDb = await openDB('jate', 1);
+
   // create new transaction 
   const tx = jateDb.transaction('jate', 'readwrite');
+
   // open desired object store
   const store = tx.objectStore('jate');
+
   // use .add to pass in content
-  const request = store.add({ jate: content });
-  // await and return
+  const request = store.add({ id: 1, value: content });
+
+  // confirm the request
   const result = await request;
   console.log('🚀 - data saved to the database', result);
 };
 
 // TODO: Add logic for a method that gets all the content from the database
 export const getDb = async () => {
-  console.error('getDb not implemented');
 
   console.log('GET all from the database');
 
+  // connect to database 
   const jateDb = await openDB('jate', 1);
-// read only since we're just getting the content
+
+  // create new transaction, read only since we're just getting the content
   const tx = jateDb.transaction('jate', 'readonly');
 
+  // opened desired store object
   const store = tx.objectStore('jate');
 
+  // use getAll to get all data in the database
   const request = store.getAll();
 
+  // confirm the request
   const result = await request;
   console.log('result.value', result);
   return result;
