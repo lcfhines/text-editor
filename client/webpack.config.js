@@ -37,7 +37,6 @@ module.exports = () => {
         short_name: 'TextEditor',
         description: 'Text Editor: Progressive Web App',
         background_color: '#ffffff',
-        crossorigin: 'use-credentials',
         start_url: './',
         publicPath: './',
         fingerprints: false, 
