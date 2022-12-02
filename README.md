@@ -8,7 +8,7 @@ This application is a text editor that runs in the browser. It is a single-page 
 
 ## Installation
 
-To install the dependencies, run ```npm install``.
+To install the dependencies, run ```npm install```.
 
 To start up the app from the backend and server the client, run ```npm run start``` from the root directory.
 
@@ -27,6 +27,7 @@ The app has a registered service worker that will precache static assets upon lo
 
 The app was deployed using Heroku. 
 
+<img width="712" alt="Screenshot 2022-12-02 at 8 53 51 AM" src="https://user-images.githubusercontent.com/113798073/205310962-8dfcec16-8e57-4d91-b9bc-8a0ec1a0194f.png">
 
 
 
