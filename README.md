@@ -25,7 +25,7 @@ The app has a registered service worker that will precache static assets upon lo
 
 ## Deployed Application
 
-The app was deployed using Heroku. 
+The app was deployed using Heroku and can be found [here](https://pwa-text-editor1123.herokuapp.com/)
 
 <img width="712" alt="Screenshot 2022-12-02 at 8 53 51 AM" src="https://user-images.githubusercontent.com/113798073/205310962-8dfcec16-8e57-4d91-b9bc-8a0ec1a0194f.png">
 
