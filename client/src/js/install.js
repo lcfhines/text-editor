@@ -6,12 +6,13 @@ window.addEventListener('beforeinstallprompt', (event) => {
     // store triggered events
     window.deferredPrompt = event;
     // set visibility
-    butInstall.style.visibility = 'visible';
+    butInstall.classList.toggle('hidden', false);
 });
 
 // TODO: Implement a click event handler on the `butInstall` element
 butInstall.addEventListener('click', async () => {
     const promptEvent = window.deferredPrompt;
+
     if (!promptEvent) {
         return;
     }
@@ -20,7 +21,7 @@ butInstall.addEventListener('click', async () => {
 
     window.deferredPrompt = null;
 
-    butInstall.setAttribute('disabled', true);
+    butInstall.classList.toggle('hidden', true);
     });
 
 

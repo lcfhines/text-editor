@@ -1,7 +1,7 @@
 import { openDB } from 'idb';
 
 const initdb = async () =>
-// create new database named 'jate', use version 1
+// create new database use version 1
   openDB('jate', 1, {
     // add database schema if not alraedy initialized
     upgrade(db) {
@@ -20,16 +20,16 @@ export const putDb = async (content) =>  {
   console.log(content);
 
   // connect to database and version
-  const jateDb = await openDB('jate', 1);
+  const textDb = await openDB('jate', 1);
 
   // create new transaction 
-  const tx = jateDb.transaction('jate', 'readwrite');
+  const tx = textDb.transaction('jate', 'readwrite');
 
   // open desired object store
   const store = tx.objectStore('jate');
 
-  // use .add to pass in content
-  const request = store.add({ id: 1, value: content });
+  // use .put to pass in content
+  const request = store.put({ id: 1, value: content });
 
   // confirm the request
   const result = await request;
@@ -41,11 +41,10 @@ export const getDb = async () => {
 
   console.log('GET all from the database');
 
-  // connect to database 
-  const jateDb = await openDB('jate', 1);
+  const textDb = await openDB('jate', 1);
 
   // create new transaction, read only since we're just getting the content
-  const tx = jateDb.transaction('jate', 'readonly');
+  const tx = textDb.transaction('jate', 'readonly');
 
   // opened desired store object
   const store = tx.objectStore('jate');
@@ -56,7 +55,7 @@ export const getDb = async () => {
   // confirm the request
   const result = await request;
   console.log('result.value', result);
-  return result;
+  return result?.value;
 };
 
 initdb();
